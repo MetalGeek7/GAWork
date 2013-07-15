@@ -1,0 +1,110 @@
+﻿body 
+{
+    width:800px;
+    font-family: Arial,Helvetica,sans-serif;
+    background-color: White;
+    margin-left: 22%;
+}
+
+.sem-year
+{
+    width:125px;
+}
+
+#mainContainer
+{
+    min-height: 700px;
+}
+
+
+#footer
+{
+    background: none repeat scroll 0 0 #000033;
+    vertical-align:bottom;
+    color:#FFFFFF;
+    font-size:small;
+    padding-left: 200px;
+}
+
+select
+{
+    width:250px;
+}
+
+html
+{
+    background: none repeat scroll 0 0 #E8F8F8;
+}
+
+
+.menu a
+{
+    background-color: Black;
+    color:White;
+    font-family:Courier New TUR;
+    margin-left:5px;
+    margin-bottom:15px;
+    margin-top:15px;
+    padding:5px;
+    cursor:pointer;
+}
+
+#mainHeading
+{
+   background-color: #990000;
+
+}
+
+#mainHeading h4
+{
+    
+    margin-left:39%;
+    color: #FFFFFF; 
+         
+}
+
+.heading h4
+{
+    margin-left:0;
+    color: #2C5581;     
+}
+
+form div
+{
+    margin: 5px;
+}
+
+.form_container
+{
+   
+}
+
+.form_container h3
+{
+    margin-left:10%;
+    
+}
+
+.searchOption, .searchResults
+{
+    margin:5px;
+    border-bottom-color:#eeeeee;
+    font-size:small;
+}
+
+.searchOption .label
+{
+    width:150px;
+}
+
+.searchOption div
+{
+    float:left;
+}
+
+.header
+{
+    background: none repeat scroll 0 0 #000033;
+    border-bottom: 1px solid #FFFFFF;
+}
+

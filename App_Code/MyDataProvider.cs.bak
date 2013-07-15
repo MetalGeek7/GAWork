@@ -1,0 +1,206 @@
+using System;
+using System.Collections.Generic;
+//using System.Linq;
+using System.Web;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+
+/// <summary>
+/// Summary description for Connection
+/// </summary>
+public class Connection
+{
+    private String connStr;
+    SqlConnection conn;
+    SqlCommand comm;
+
+    public Connection()
+    {
+        //
+        // TODO: Add constructor logic here
+        //
+    }
+
+    public String AppMenu(String appName)
+    {
+        String returnText = null;
+        if(appName.Equals("resumeApp"))
+        {
+            returnText = "<a href='add_faculty.aspx'>Add Faculty</a>&nbsp;&nbsp;&nbsp;<a href='upload_resume.aspx'>Upload Resume</a>";
+        }
+        else if (appName.Equals("syllabiApp"))
+        {
+            returnText = "<a href='add_faculty.aspx'>Add Faculty</a><a href='add_course.aspx'>Add Course</a><a href='upload_syllabi.aspx'>Upload Syllabi</a>";
+        }
+        return returnText;
+
+    }
+
+    public DataSet DropdownData(String query_string)
+    {
+        connStr = ConfigurationManager.ConnectionStrings["cba_webappConnectionString1"].ToString();
+        conn = new SqlConnection(connStr);
+        
+        comm = new SqlCommand(query_string, conn);
+        
+        conn.Open();
+        SqlDataAdapter da = new SqlDataAdapter(comm);
+        DataSet ds = new DataSet();
+
+        da.Fill(ds);
+        if (conn.State.ToString() == "Open")
+        {
+
+            conn.Close();
+
+        }
+        return ds;
+    }
+
+    public DataSet DeptDropdownData()
+    {
+        connStr = ConfigurationManager.ConnectionStrings["cba_webappConnectionString1"].ToString();
+        conn = new SqlConnection(connStr);
+        comm = new SqlCommand("select dept_id,dept_name from departmentDetails", conn);
+        conn.Open();
+        SqlDataAdapter da = new SqlDataAdapter(comm);
+        DataSet ds = new DataSet();
+
+        da.Fill(ds);
+        if (conn.State.ToString() == "Open")
+        {
+
+            conn.Close();
+
+        }
+        return ds;
+    }
+
+    public DataSet CrnData(String str)
+    {
+        connStr = ConfigurationManager.ConnectionStrings["cba_webappConnectionString1"].ToString();
+        conn = new SqlConnection(connStr);
+        comm = new SqlCommand("SELECT departmentDetails.dept_name, sectionDetails.crn, facultyDetails.f_firstName, facultyDetails.f_lastName, syllabiPathDetails.s_path, courseDetails.course_id, courseDetails.course_name FROM courseDetails INNER JOIN departmentDetails ON courseDetails.dept_id = departmentDetails.dept_id INNER JOIN sectionDetails ON courseDetails.p_id = sectionDetails.p_id INNER JOIN facultyDetails ON sectionDetails.f_id = facultyDetails.f_id INNER JOIN syllabiPathDetails ON courseDetails.p_id = syllabiPathDetails.p_id AND sectionDetails.sec_id = syllabiPathDetails.sec_id where crn='" + str + "'", conn); conn.Open();
+        SqlDataAdapter da = new SqlDataAdapter(comm);
+        DataSet ds = new DataSet();
+
+        da.Fill(ds);
+        if (conn.State.ToString() == "Open")
+        {
+
+            conn.Close();
+
+        }
+        return ds;
+    }
+
+
+    public DataSet byFacultyForResume(String str)
+    {
+        DataSet ds = new DataSet();
+        if (str != null)
+        {
+            connStr = ConfigurationManager.ConnectionStrings["cba_webappConnectionString1"].ToString();
+            conn = new SqlConnection(connStr);
+            comm = new SqlCommand("SELECT faculty_Resume.resume_path, facultyDetails.f_firstName, facultyDetails.f_lastName, facultyDetails.f_designation, facultyDetails.f_webpage FROM faculty_Resume INNER JOIN facultyDetails ON faculty_Resume.f_id = facultyDetails.f_id where facultyDetails.f_id='" + str + "'", conn); conn.Open();
+            SqlDataAdapter da = new SqlDataAdapter(comm);
+
+            da.Fill(ds);
+            if (conn.State.ToString() == "Open")
+            {
+                conn.Close();
+            }
+        }
+        return ds;
+
+    }
+
+
+    public DataSet byFacultyData(String str)
+    {
+        DataSet ds = new DataSet();
+        if (str != null)
+        {
+            connStr = ConfigurationManager.ConnectionStrings["cba_webappConnectionString1"].ToString();
+            conn = new SqlConnection(connStr);
+            comm = new SqlCommand("SELECT departmentDetails.dept_name, sectionDetails.crn, facultyDetails.f_firstName, facultyDetails.f_lastName, syllabiPathDetails.s_path, courseDetails.course_id, courseDetails.course_name FROM courseDetails INNER JOIN departmentDetails ON courseDetails.dept_id = departmentDetails.dept_id INNER JOIN sectionDetails ON courseDetails.p_id = sectionDetails.p_id INNER JOIN facultyDetails ON sectionDetails.f_id = facultyDetails.f_id INNER JOIN syllabiPathDetails ON courseDetails.p_id = syllabiPathDetails.p_id AND sectionDetails.sec_id = syllabiPathDetails.sec_id where facultyDetails.f_id='" + str + "'", conn); conn.Open();
+            SqlDataAdapter da = new SqlDataAdapter(comm);
+
+            da.Fill(ds);
+            if (conn.State.ToString() == "Open")
+            {
+                conn.Close();
+            }
+        }
+        return ds;
+        
+    }
+
+    public DataSet byCourseName(String str)
+    {
+        connStr = ConfigurationManager.ConnectionStrings["cba_webappConnectionString1"].ToString();
+        conn = new SqlConnection(connStr);
+        comm = new SqlCommand("SELECT departmentDetails.dept_name, sectionDetails.crn, facultyDetails.f_firstName, facultyDetails.f_lastName, syllabiPathDetails.s_path, courseDetails.course_id, courseDetails.course_name FROM courseDetails INNER JOIN departmentDetails ON courseDetails.dept_id = departmentDetails.dept_id INNER JOIN sectionDetails ON courseDetails.p_id = sectionDetails.p_id INNER JOIN facultyDetails ON sectionDetails.f_id = facultyDetails.f_id INNER JOIN syllabiPathDetails ON courseDetails.p_id = syllabiPathDetails.p_id AND sectionDetails.sec_id = syllabiPathDetails.sec_id where courseDetails.course_name LIKE '%" + str + "%'", conn); conn.Open();
+        SqlDataAdapter da = new SqlDataAdapter(comm);
+        DataSet ds = new DataSet();
+
+        da.Fill(ds);
+        if (conn.State.ToString() == "Open")
+        {
+
+            conn.Close();
+
+        }
+        return ds;
+
+    }
+    public DataSet byDeptData(String str)
+    {
+        connStr = ConfigurationManager.ConnectionStrings["cba_webappConnectionString1"].ToString();
+        conn = new SqlConnection(connStr);
+        comm = new SqlCommand("SELECT departmentDetails.dept_name, sectionDetails.crn, facultyDetails.f_firstName, facultyDetails.f_lastName, syllabiPathDetails.s_path, courseDetails.course_id, courseDetails.course_name FROM courseDetails INNER JOIN departmentDetails ON courseDetails.dept_id = departmentDetails.dept_id INNER JOIN sectionDetails ON courseDetails.p_id = sectionDetails.p_id INNER JOIN facultyDetails ON sectionDetails.f_id = facultyDetails.f_id INNER JOIN syllabiPathDetails ON courseDetails.p_id = syllabiPathDetails.p_id AND sectionDetails.sec_id = syllabiPathDetails.sec_id where departmentDetails.dept_id='" + str + "'", conn); conn.Open();
+        SqlDataAdapter da = new SqlDataAdapter(comm);
+        DataSet ds = new DataSet();
+
+        da.Fill(ds);
+        if (conn.State.ToString() == "Open")
+        {
+            conn.Close();
+        }
+        return ds;
+    }
+
+
+    
+    public DataSet gridData(String str)
+    {
+        connStr = ConfigurationManager.ConnectionStrings["cba_webappConnectionString1"].ToString();
+        conn = new SqlConnection(connStr);
+        comm = new SqlCommand("SELECT courseDetails.course_id, courseDetails.course_name, departmentDetails.dept_name FROM courseDetails INNER JOIN departmentDetails ON courseDetails.dept_id = departmentDetails.dept_id where course_id='" + str + "'", conn);
+        conn.Open();
+        SqlDataAdapter da = new SqlDataAdapter(comm);
+        DataSet ds = new DataSet();
+        da.Fill(ds);
+        if (conn.State.ToString() == "Open")
+        {
+            conn.Close();
+        }
+        return ds;
+
+    }
+
+    public void addSyllabiEntry(String q){
+            connStr = ConfigurationManager.ConnectionStrings["cba_webappConnectionString1"].ToString();
+            conn = new SqlConnection(connStr);
+            comm = new SqlCommand(q, conn);
+            conn.Open();
+            comm.ExecuteNonQuery();
+            if (conn.State.ToString() == "Open")
+            {
+                conn.Close();
+            }
+
+        }
+
+}
