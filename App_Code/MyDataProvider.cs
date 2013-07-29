@@ -213,7 +213,7 @@ public class Connection
             }
         }
 
-    public DataSet Search(String crn, String dept, String course_keyword, String course, String faculty, String semester, String year)
+    public DataSet Search(String crn, String dept, String course, String faculty, String semester, String year)
     {
         String query_addon = "";
         if(!crn.Equals(""))
@@ -221,10 +221,10 @@ public class Connection
             query_addon += "crn='" + crn + "' AND "; 
         }
 
-        if (!course_keyword.Equals(""))
+        /*if (!course_keyword.Equals(""))
         {
             query_addon += "courseDetails.course_name LIKE '%" + course_keyword + "%' AND ";
-        }
+        }*/
 
         if (!course.Equals("-1"))
         {
@@ -238,15 +238,22 @@ public class Connection
 
         if (!faculty.Equals("-1"))
         {
-            query_addon += "facultyDetails.f_id='" + faculty + "' AND ";
+            String[] facultyArr = new String[] { "", "" };
+            if (faculty.Contains(" "))                                  //To check for exactly one whitespace in between faculty name
+            {
+                facultyArr = faculty.Split(' ');
+                query_addon += "(facultyDetails.f_firstName LIKE '%" + facultyArr[0] + "%' AND facultyDetails.f_lastName LIKE '%" + facultyArr[1] + "%') AND ";
+            }
+            else
+                query_addon += "(facultyDetails.f_firstName LIKE '%" + faculty + "%' OR facultyDetails.f_lastName LIKE '%" + faculty + "%') AND ";
         }
 
-        if (!semester.Equals("-1"))
+        if (!semester.Equals("-1") && !semester.Equals(""))
         {
             query_addon += "syllabiPathDetails.semester='" + semester + "' AND ";
         }
 
-        if (!year.Equals("-1"))
+        if (!year.Equals("-1") && !year.Equals(""))                     //Changed acc to new requirement
         {
             query_addon += "syllabiPathDetails.year='" + year + "' AND ";
         }

@@ -28,7 +28,84 @@
                         </div>
                         <div style="clear:both" ></div>
                     </div>
+
+                      <div class="searchOption" id="Div4" runat="server"> 
+                        <div class="label">
+                           <asp:Label id="label2" AssociatedControlId="tb1" Text="Select Term:" runat="server" />
+                        </div>
+                        <div>
+                            <asp:DropDownList CssClass="sem-year" ID="semester" Width="250px" runat="server">
+                            </asp:DropDownList>
+                            <%-- 
+                            <asp:DropDownList CssClass="sem-year" ID="year" runat="server">
+                            </asp:DropDownList>
+                            --%>
+                        </div>
+                        <div style="clear:both" ></div>
+                    </div>
+                     <div class="searchOption" id="form_dept_list">
+                        <div class="label">Select Subject:</div>
+                        <div>
+                            <asp:DropDownList ID="DD_Dept_list" runat="server">
+                            </asp:DropDownList>
+                        </div>
+                        <%--<div>
+                            <asp:Button ID="SearchbyDeptName" runat="server" Text="Search by Department" 
+                                onclick="SearchbyDeptName_Click" Width="181px" ValidationGroup="dept_validation" />
+                            <asp:RequiredFieldValidator id="RequiredFieldValidator3" runat="server"
+                                   ControlToValidate="DD_Dept_list" InitialValue="-1"
+                                   ErrorMessage="Invalid Selection" ValidationGroup="dept_validation"
+                                   ForeColor="Red">
+                             </asp:RequiredFieldValidator>  
+                        </div> --%> 
+                        <div style="clear:both"   ></div>
+                    </div>
+                      <div class="searchOption" id="Div2">
+                        <div class="label">Select Course:</div>
+                        <div>
+                            <asp:DropDownList ID="course_List" runat="server">
+                            </asp:DropDownList>
+                        </div>
+                        <%--<div>
+                            <asp:Button ID="SearchbyCourseID" runat="server" Text="Search by Course" 
+                                onclick="SearchbyCourseID_Click" Width="181px" ValidationGroup="cname_validation" />
+                            <asp:RequiredFieldValidator id="RequiredFieldValidator5" runat="server"
+                                   ControlToValidate="course_List" InitialValue="-1"
+                                   ErrorMessage="Invalid Selection" ValidationGroup="cname_validation"
+                                   ForeColor="Red">
+                             </asp:RequiredFieldValidator>  
+                        </div>--%>  
+                        <div style="clear:both"   ></div>
+                    </div>
                     
+                    
+                    <%--<div class="searchOption" id="Div3" runat="server"> 
+                        <div>
+                           
+                        </div>
+                        <div>
+                            <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OR</strong>
+                        </div>
+                        <div style="clear:both" ></div>
+                    </div>--%>
+
+                      <div class="searchOption" id="Div3">
+                        <div class="label">Select Faculty: </div>
+                        <div>
+                            <asp:TextBox ID="DD_Faculty_list" Width="245px" runat="server" CausesValidation="True"></asp:TextBox>
+                        </div>
+                        <%--<div>
+                            <asp:Button ID="SearchbyFaculty" runat="server" Text="Search by Faculty Name" 
+                                onclick="SearchbyFaculty_Click" Width="181px" ValidationGroup="faculty_validation"/>
+                            <asp:RequiredFieldValidator id="RequiredFieldValidator2" runat="server"
+                                   ControlToValidate="DD_Faculty_list" InitialValue="-1"
+                                   ErrorMessage="Invalid Selection" ValidationGroup="faculty_validation"
+                                   ForeColor="Red">
+                             </asp:RequiredFieldValidator>  
+                        </div> --%>
+                        <div style="clear:both"></div>
+                    </div>
+
                     <div class="searchOption" id="form_crn" runat="server"> 
                         <div class="label">
                             <asp:Label id="label" AssociatedControlId="tb1" Text="Enter CRN here:" runat="server" />
@@ -48,33 +125,8 @@
                         </div> --%>
                         <div style="clear:both" ></div>
                     </div>
+
                     
-                    <%--<div class="searchOption" id="Div3" runat="server"> 
-                        <div>
-                           
-                        </div>
-                        <div>
-                            <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OR</strong>
-                        </div>
-                        <div style="clear:both" ></div>
-                    </div>--%>
-                    <div class="searchOption" id="form_faculty_name">
-                        <div class="label">Select Faculty: </div>
-                        <div>
-                            <asp:DropDownList ID="DD_Faculty_list" runat="server">
-                            </asp:DropDownList>
-                        </div>
-                        <%--<div>
-                            <asp:Button ID="SearchbyFaculty" runat="server" Text="Search by Faculty Name" 
-                                onclick="SearchbyFaculty_Click" Width="181px" ValidationGroup="faculty_validation"/>
-                            <asp:RequiredFieldValidator id="RequiredFieldValidator2" runat="server"
-                                   ControlToValidate="DD_Faculty_list" InitialValue="-1"
-                                   ErrorMessage="Invalid Selection" ValidationGroup="faculty_validation"
-                                   ForeColor="Red">
-                             </asp:RequiredFieldValidator>  
-                        </div> --%>
-                        <div style="clear:both"></div>
-                    </div>
                      <%--<div class="searchOption" id="Div6" runat="server"> 
                         <div>
                            
@@ -84,23 +136,7 @@
                         </div>
                         <div style="clear:both" ></div>
                     </div>--%>
-                    <div class="searchOption" id="form_dept_list">
-                        <div class="label">Select Department:</div>
-                        <div>
-                            <asp:DropDownList ID="DD_Dept_list" runat="server">
-                            </asp:DropDownList>
-                        </div>
-                        <%--<div>
-                            <asp:Button ID="SearchbyDeptName" runat="server" Text="Search by Department" 
-                                onclick="SearchbyDeptName_Click" Width="181px" ValidationGroup="dept_validation" />
-                            <asp:RequiredFieldValidator id="RequiredFieldValidator3" runat="server"
-                                   ControlToValidate="DD_Dept_list" InitialValue="-1"
-                                   ErrorMessage="Invalid Selection" ValidationGroup="dept_validation"
-                                   ForeColor="Red">
-                             </asp:RequiredFieldValidator>  
-                        </div> --%> 
-                        <div style="clear:both"   ></div>
-                    </div>
+                   
                     <%--<div class="searchOption" id="Div7" runat="server"> 
                         <div>
                            
@@ -110,23 +146,7 @@
                         </div>
                         <div style="clear:both" ></div>
                     </div>--%>
-                    <div class="searchOption" id="Div2">
-                        <div class="label">Select Course:</div>
-                        <div>
-                            <asp:DropDownList ID="course_List" runat="server">
-                            </asp:DropDownList>
-                        </div>
-                        <%--<div>
-                            <asp:Button ID="SearchbyCourseID" runat="server" Text="Search by Course" 
-                                onclick="SearchbyCourseID_Click" Width="181px" ValidationGroup="cname_validation" />
-                            <asp:RequiredFieldValidator id="RequiredFieldValidator5" runat="server"
-                                   ControlToValidate="course_List" InitialValue="-1"
-                                   ErrorMessage="Invalid Selection" ValidationGroup="cname_validation"
-                                   ForeColor="Red">
-                             </asp:RequiredFieldValidator>  
-                        </div>--%>  
-                        <div style="clear:both"   ></div>
-                    </div>
+                  
                    <%-- <div class="searchOption" id="Div8" runat="server"> 
                         <div>
                            
@@ -136,14 +156,14 @@
                         </div>
                         <div style="clear:both" ></div>
                     </div>--%> 
-                    <div class="searchOption" id="form_course_bane" runat="server"> 
+                   <%--<div class="searchOption" id="form_course_bane" runat="server"> 
                         <div class="label">
                             <asp:Label id="label1" AssociatedControlId="courseName" Text="Enter Coursename Keywords:" runat="server" />
                         </div>
                         <div>
                             <asp:TextBox id="courseName" runat="server" Width="245px" /> 
                         </div> 
-                        <%--<div>
+                        <div>
                             <asp:Button ID="searchByCourseName_a" runat="server" onclick="searchByCourseName" Text="Search by Keywords" 
                                 Width="181px" ValidationGroup="courseName_validation"/>
                             <asp:RequiredFieldValidator id="RequiredFieldValidator4" runat="server"
@@ -151,9 +171,10 @@
                                    ErrorMessage="Enter Text" ValidationGroup="courseName_validation"
                                    ForeColor="Red">
                             </asp:RequiredFieldValidator> 
-                        </div>--%> 
+                        </div> 
                         <div style="clear:both"   ></div>
                     </div>
+                    --%>
                     <%--<div class="searchOption" id="Div9" runat="server"> 
                         <div>
                            
@@ -163,19 +184,7 @@
                         </div>
                         <div style="clear:both" ></div>
                     </div>--%>
-                    <div class="searchOption" id="Div4" runat="server"> 
-                        <div class="label">
-                           <asp:Label id="label2" AssociatedControlId="tb1" Text="Select Semester/year:" runat="server" />
-                        </div>
-                        <div>
-                            <asp:DropDownList CssClass="sem-year" ID="semester" runat="server">
-                            </asp:DropDownList>
-                            <asp:DropDownList CssClass="sem-year" ID="year" runat="server">
-                            </asp:DropDownList>
-                            
-                        </div>
-                        <div style="clear:both" ></div>
-                    </div>
+                  
                     
                     <div class="searchOption" id="Div10" runat="server"> 
                         <div class="label">
